@@ -3,7 +3,7 @@
 ### Software & Tools Requirements
 
 1. [GitHub Account](https://github.com)
-2. [VS Code](https://code.visusalstudio.com/)
+2. [VS Code](https://code.visualstudio.com/)
 3. [HerokuAccount](https://heroku.com)
 4. [Git](https://git-scm.com/)
 
