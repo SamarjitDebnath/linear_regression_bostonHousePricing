@@ -17,11 +17,8 @@ def predict_api():
     content_type = request.headers.get('Content-Type')
     if (content_type == 'application/json'):
         data = request.json["data"]
-        print(data) # debug print
-        print(np.array(list(data.values())).reshape(1, -1)) # debug print
         new_data = scaler.transform(np.array(list(data.values())).reshape(1, -1))
         output = linear_reg_model.predict(new_data)
-        print(output[0]) # debug print
         return jsonify(output[0])
     else:
         return "Content type is not supported provide data in JSON format."
@@ -30,9 +27,8 @@ def predict_api():
 def predict():
     data = [float(x) for x in request.form.values()]
     final_input = scaler.transform(np.array(data).reshape(1, -1))
-    print(final_input) # debug print
     output = linear_reg_model.predict(final_input)[0]
     return render_template("index.html", prediction_text="The Price for this house is {0}".format(output))
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
