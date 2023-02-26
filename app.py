@@ -24,7 +24,15 @@ def predict_api():
         print(output[0]) # debug print
         return jsonify(output[0])
     else:
-        return "Content type is not supported."
+        return "Content type is not supported provide data in JSON format."
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    data = [float(x) for x in request.form.values()]
+    final_input = scaler.transform(np.array(data).reshape(1, -1))
+    print(final_input) # debug print
+    output = linear_reg_model.predict(final_input)[0]
+    return render_template("index.html", prediction_text="The Price for this house is {0}".format(output))
 
 if __name__ == "__main__":
     app.run(debug=True)
